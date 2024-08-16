@@ -1,6 +1,14 @@
 import * as xbt from './x360-utilities.js';
 
 $(document).ready(function () {
+
+	$(document).on('dragover drop', function (event) {
+		if (!$(event.target).closest('#fileInput').length) {
+			event.preventDefault();
+			event.originalEvent.dataTransfer.dropEffect = 'none';
+		}
+	});
+
 	$('#fileInput').on('change', function (event) {
 		const inputFile = event.target.files[0];
 		if (inputFile) {
